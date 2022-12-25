@@ -1,11 +1,11 @@
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import { FormWr, Input, Label, Button, Error } from './ContactForm.styled';
-const schema = yup.object().shape({
-  name: yup.string().required(),
-  number: yup.number().min(6).required(),
-});
+// const schema = yup.object().shape({
+//   name: yup.string().required(),
+//   number: yup.number().min(6).required(),
+// });
 
 const initialValues = {
   name: '',
@@ -14,14 +14,14 @@ const initialValues = {
 export const ContactForm = ({ onSubmit }) => {
   return (
     <Formik
-      validationSchema={schema}
+      // validationSchema={schema}
       initialValues={initialValues}
       onSubmit={onSubmit}
     >
       <FormWr>
         <Label>
           Name
-          <Error component="div" name="name" />
+          {/* <Error component="div" name="name" /> */}
           <Input
             type="text"
             name="name"
@@ -33,7 +33,7 @@ export const ContactForm = ({ onSubmit }) => {
         </Label>
         <Label>
           Number
-          <Error component="div" name="number" />
+          {/* <Error component="div" name="number" /> */}
           <Input
             placeholder="Enter number"
             type="tel"
