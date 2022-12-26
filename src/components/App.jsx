@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contaclist } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { nanoid } from 'nanoid';
 const GlobalStyle = createGlobalStyle`
   ul,h1,h2,h3,h4,h5,h6,li,p{list-style:none;margin:0;padding:0;};
   body{
@@ -25,16 +24,6 @@ export const App = () => {
     localStorage.setItem(KEY_STORAGE, JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = (values, { resetForm }) => {
-    const newContact = { id: nanoid(3), ...values };
-    const newContactName = newContact.name.toLowerCase();
-    if (contacts.find(people => people.name.toLowerCase() === newContactName)) {
-      alert(`${newContact.name} is already in contact`);
-    } else {
-      setContacts([newContact, ...contacts]);
-      resetForm();
-    }
-  };
   const deleteContact = id => {
     setContacts(contacts.filter(contact => contact.id !== id));
   };
@@ -52,7 +41,7 @@ export const App = () => {
     <div>
       <GlobalStyle />
       <h1>PhoneBook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <h2>Contacts :</h2>
       {contacts.length === 0 ? (
         <h2>You have no contacts saved</h2>

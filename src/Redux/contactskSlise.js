@@ -6,8 +6,9 @@ export const contactskSlise = createSlice({
       []
   ,
   reducers: {
-    addContact: (state,action) => {
-          state.contacts.unshift(action.payload);
+    addContact: (state, action) => {
+      
+          state.unshift(action.payload);
     },
     removeContact: (state,action ) => {
       state.contacts.splice(action.payload, 1)
