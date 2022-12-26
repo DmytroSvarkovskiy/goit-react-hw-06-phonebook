@@ -7,11 +7,11 @@ export const contactskSlise = createSlice({
   ,
   reducers: {
     addContact: (state, action) => {
-      
-          state.unshift(action.payload);
+      state.unshift(action.payload);
     },
-    removeContact: (state,action ) => {
-      state.contacts.splice(action.payload, 1)
+    removeContact: (state, action) => {
+      const index = state.findIndex(task => task.id === action.payload);
+    state.splice(index, 1);
     },
   },
 })

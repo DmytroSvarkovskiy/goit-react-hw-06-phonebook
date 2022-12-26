@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contaclist } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
+import { useSelector } from 'react-redux';
 const GlobalStyle = createGlobalStyle`
   ul,h1,h2,h3,h4,h5,h6,li,p{list-style:none;margin:0;padding:0;};
   body{
@@ -13,29 +13,8 @@ const GlobalStyle = createGlobalStyle`
    color: '#010101'; 
   }
 `;
-const KEY_STORAGE = 'contacts';
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem(KEY_STORAGE)) ?? [];
-  });
-  const [filters, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem(KEY_STORAGE, JSON.stringify(contacts));
-  }, [contacts]);
-
-  const deleteContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-  };
-
-  const onFilterChange = e => {
-    const filterWord = e.target.value.toLowerCase();
-    setFilter(filterWord);
-  };
-
-  const visibleContacts = contacts.filter(abonent =>
-    abonent.name.toLowerCase().includes(filters)
-  );
+  const contacts = useSelector(state => state.contacts);
 
   return (
     <div>
@@ -47,11 +26,8 @@ export const App = () => {
         <h2>You have no contacts saved</h2>
       ) : (
         <>
-          <Filter value={filters} onFilterChange={onFilterChange} />
-          <Contaclist
-            listAbonents={visibleContacts}
-            onDeleteClick={deleteContact}
-          />
+          <Filter />
+          <Contaclist />
         </>
       )}
     </div>

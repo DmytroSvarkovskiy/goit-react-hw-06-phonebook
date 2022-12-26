@@ -1,14 +1,16 @@
 import { WrapperFiler, FilterInput, FilterP } from './Filter.styled';
-import PropTypes from 'prop-types';
-export const Filter = ({ onFilterChange, value }) => {
+import { useDispatch } from 'react-redux';
+import { filtration } from 'Redux/filterSlice';
+export const Filter = () => {
+  const dispatch = useDispatch();
+
   return (
     <WrapperFiler>
       <FilterP>Find contacts by name</FilterP>
-      <FilterInput type="text" value={value} onChange={onFilterChange} />
+      <FilterInput
+        type="text"
+        onChange={e => dispatch(filtration(e.target.value))}
+      />
     </WrapperFiler>
   );
-};
-Filter.propTypes = {
-  onFilterChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
 };
