@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { ContactForm } from './ContactForm/ContactForm';
-import { Contaclist } from './ContactList/ContactList';
+import { Contactlist } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { useSelector } from 'react-redux';
 
@@ -28,7 +28,7 @@ export const App = () => {
       ) : (
         <>
           <Filter />
-          <Contaclist />
+          <Contactlist />
         </>
       )}
     </div>

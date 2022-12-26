@@ -2,7 +2,7 @@ import { Button, Item, List } from './ContactList.styled';
 import { removeContact } from 'Redux/contactskSlise';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const Contaclist = () => {
+export const Contactlist = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
   const filterData = useSelector(state => state.filter).toLowerCase();
